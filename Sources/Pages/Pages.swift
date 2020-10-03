@@ -30,6 +30,7 @@ import UIKit
 @available(iOS 13.0, *)
 public struct Pages: View {
 
+    @State private var controllers: [UIHostingController<AnyView>]
     @Binding var currentPage: Int
     var pages: [AnyView]
 
