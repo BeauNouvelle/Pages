@@ -91,6 +91,7 @@ public struct Pages: View {
         self.controlAlignment = controlAlignment
         self.pages = pages()
         self._currentPage = currentPage
+        self._controllers = State(initialValue: self.pages.map { UIHostingController(rootView: $0.eraseToAnyView()) })
     }
 
     public var body: some View {
@@ -101,11 +102,12 @@ public struct Pages: View {
                 transitionStyle: transitionStyle,
                 bounce: bounce,
                 wrap: wrap,
-                controllers: pages.map {
-                    let h = UIHostingController(rootView: $0)
-                    h.view.backgroundColor = .clear
-                    return h
-                }
+controllers: pages.enumerated().map { i, page in
+      let h = controllers[i]
+      h.rootView = page.eraseToAnyView()
+      return h
+  }
+                
             )
             if self.hasControl {
                 PageControl(
