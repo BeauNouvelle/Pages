@@ -118,7 +118,7 @@ class PagesCoordinator: NSObject, UIPageViewControllerDataSource,
         if completed,
         let visibleViewController = pageViewController.viewControllers?.first,
         let index = parent.controllers.firstIndex(of: visibleViewController) {
- //           parent.currentPage = index
+           parent.currentPage = index
         }
     }
 }
